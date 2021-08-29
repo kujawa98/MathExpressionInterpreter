@@ -10,6 +10,9 @@ class RPNConverterTest(unittest.TestCase):
     def test_empty(self):
         self.assertEqual(self.rpn_conv.to_rpn(""), None)
 
+    def test_whitespaces(self):
+        self.assertEqual(self.rpn_conv.to_rpn("     \n\t\n\n\t\v\v\f\r\f\r\n    "), None)
+
 
 if __name__ == '__main__':
     unittest.main()
