@@ -5,7 +5,10 @@ from rpn_converter import RPNConverter
 
 class RPNConverterTest(unittest.TestCase):
     def setUp(self):
-        rpn_conv = RPNConverter()
+        self.rpn_conv = RPNConverter()
+
+    def test_empty(self):
+        self.assertEqual(self.rpn_conv.to_rpn(""), None)
 
 
 if __name__ == '__main__':
