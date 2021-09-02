@@ -12,6 +12,9 @@ class MyTestCase(unittest.TestCase):
         exp = self.rpn_conv.to_rpn("")
         self.assertEqual(self.lex.tokenize(exp), [])
 
+    def test_whitespaces(self):
+        exp = self.rpn_conv.to_rpn("   \t\n\n\v\r\f\n\t     ")
+        self.assertEqual(self.lex.tokenize(exp), [])
 
 if __name__ == '__main__':
     unittest.main()
