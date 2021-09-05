@@ -15,4 +15,4 @@ class TokenType(Enum):
 @dataclass
 class Token:
     type: TokenType
-    value: int
+    value: int = None
