@@ -12,4 +12,6 @@ class NodeType(Enum):
 @dataclass
 class Node:
     type: NodeType
+    left_child: any
+    right_child: any
     value: int = None
