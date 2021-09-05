@@ -4,7 +4,10 @@ from parser_ import Parser
 
 class ParserTest(unittest.TestCase):
     def setUp(self):
-        parser_ = Parser()
+        self.parser_ = Parser()
+
+    def test_empty(self):
+        self.assertEqual(self.parser_.parse([]), None)
 
 
 if __name__ == '__main__':
