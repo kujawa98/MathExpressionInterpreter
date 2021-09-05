@@ -7,6 +7,7 @@ class NodeType(Enum):
     SUB = 2
     MUL = 3
     DIV = 4
+    NUMBER = 5
 
 
 @dataclass
