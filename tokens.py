@@ -8,8 +8,6 @@ class TokenType(Enum):
     SUB = 3
     MUL = 4
     DIV = 5
-    LPAR = 6
-    RPAR = 7
 
 
 @dataclass
