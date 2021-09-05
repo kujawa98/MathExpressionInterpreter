@@ -1,2 +1,8 @@
+from nodes import *
+
 class Parser:
-    pass
+    def parse(self, tokens):
+        main_node = None
+        if tokens:
+            pass
+        return None
