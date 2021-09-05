@@ -25,6 +25,15 @@ class MyTestCase(unittest.TestCase):
         for i in range(len(tkns)):
             self.assertEqual(res[i].type, tkns[i])
 
+    def test_operators_only(self):
+        exp = self.rpn_conv.to_rpn("+-*//*-+")
+        res = self.lex.tokenize(exp)
+        tkns = [TokenType.ADD, TokenType.MUL, TokenType.DIV, TokenType.DIV, TokenType.MUL, TokenType.SUB, TokenType.SUB,
+                TokenType.ADD]
+        self.assertEqual(len(res), len(tkns))
+        for i in range(len(tkns)):
+            self.assertEqual(res[i].type, tkns[i])
+
 
 if __name__ == '__main__':
     unittest.main()
