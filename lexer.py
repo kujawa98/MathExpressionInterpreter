@@ -1,3 +1,6 @@
 class Lexer:
     def tokenize(self, expression):
-       pass
+       result = []
+       if expression:
+           pass
+       return result
