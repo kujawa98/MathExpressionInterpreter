@@ -34,6 +34,20 @@ class MyTestCase(unittest.TestCase):
         for i in range(len(tkns)):
             self.assertEqual(res[i].type, tkns[i])
 
+    def test_tokens_types(self):
+        exps = list(map(lambda x: self.rpn_conv.to_rpn(x), ["2+3*7", "6-8/2*41", "6-8"]))
+        res = list(map(lambda x: self.lex.tokenize(x), exps))
+        tkns0 = [TokenType.NUMBER, TokenType.NUMBER, TokenType.NUMBER, TokenType.MUL, TokenType.ADD]
+        tkns1 = [TokenType.NUMBER, TokenType.NUMBER, TokenType.NUMBER, TokenType.DIV, TokenType.NUMBER, TokenType.MUL,
+                 TokenType.SUB]
+        tkns2 = [TokenType.NUMBER, TokenType.NUMBER, TokenType.SUB]
+        for i in range(len(res[0])):
+            self.assertEqual(res[0][i].type, tkns0[i])
+        for i in range(len(res[1])):
+            self.assertEqual(res[1][i].type, tkns1[i])
+        for i in range(len(res[2])):
+            self.assertEqual(res[2][i].type, tkns2[i])
+
 
 if __name__ == '__main__':
     unittest.main()
