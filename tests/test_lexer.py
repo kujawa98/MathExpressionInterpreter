@@ -4,7 +4,7 @@ import lexer
 from tokens import TokenType
 
 
-class MyTestCase(unittest.TestCase):
+class LexerTest(unittest.TestCase):
     def setUp(self):
         self.rpn_conv = rpn_converter.RPNConverter()
         self.lex = lexer.Lexer()
