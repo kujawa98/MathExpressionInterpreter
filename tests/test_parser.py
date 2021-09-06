@@ -24,6 +24,11 @@ class ParserTest(unittest.TestCase):
         res_node = self.parser_.parse(tkns)
         self.assertEqual(res_node, None)
 
+    def test_operators_nodes(self):
+        tkns = [Token(TokenType.ADD), Token(TokenType.MUL), Token(TokenType.DIV), Token(TokenType.SUB)]
+        res_node = self.parser_.parse(tkns)
+        self.assertEqual(res_node, None)
+
 
 #         check if there's number in a first place, if so, check if there' any tokens left
 #         if so expression is invalid and return None, if not it is OK
