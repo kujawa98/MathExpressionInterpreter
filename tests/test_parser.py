@@ -19,6 +19,11 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(res_node.type, NodeType.NUMBER)
         self.assertEqual(res_node.value, nd.value)
 
+    def test_more_than_one_number(self):
+        tkns = [Token(TokenType.NUMBER, 9), Token(TokenType.NUMBER, 91), Token(TokenType.NUMBER, 4)]
+        res_node = self.parser_.parse(tkns)
+        self.assertEqual(res_node, None)
+
 
 #         check if there's number in a first place, if so, check if there' any tokens left
 #         if so expression is invalid and return None, if not it is OK
