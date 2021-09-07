@@ -28,5 +28,11 @@ class InterpreterTest(unittest.TestCase):
         res = self.interpreter.interpret(ppp)
         self.assertEqual(res, "")
 
+    def test_operators(self):
+        ppp = self.parser.parse(self.lexer.tokenize(self.rpn.to_rpn("*-+/")))
+        res = self.interpreter.interpret(ppp)
+        self.assertEqual(res, "")
+
+
 if __name__ == '__main__':
     unittest.main()
