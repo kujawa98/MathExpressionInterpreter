@@ -40,9 +40,19 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(nd.right_child.value, 9)
         self.assertEqual(nd.left_child.value, 10)
 
+    def test_exp(self):
+        tkns = [Token(TokenType.NUMBER, 2), Token(TokenType.NUMBER, 3), Token(TokenType.NUMBER, 4),
+                Token(TokenType.MUL), Token(TokenType.NUMBER, 8), Token(TokenType.DIV), Token(TokenType.ADD)]
+        nd = self.parser_.parse(tkns)
+        self.assertEqual(nd.right_child.type, NodeType.NUMBER)
+        self.assertEqual(nd.right_child.value, 2)
+        self.assertEqual(nd.left_child.type, NodeType.DIV)
+        self.assertEqual(nd.left_child.left_child.type, NodeType.NUMBER)
+        self.assertEqual(nd.left_child.left_child.value, 8)
+        self.assertEqual(nd.left_child.right_child.type, NodeType.MUL)
+        self.assertEqual(nd.left_child.right_child.left_child.value, 4)
+        self.assertEqual(nd.left_child.right_child.right_child.value, 3)
 
-#         check if there's number in a first place, if so, check if there' any tokens left
-#         if so expression is invalid and return None, if not it is OK
 
 if __name__ == '__main__':
     unittest.main()
