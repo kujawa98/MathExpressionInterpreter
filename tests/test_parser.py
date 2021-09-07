@@ -30,6 +30,16 @@ class ParserTest(unittest.TestCase):
         res_node = self.parser_.parse(tkns)
         self.assertEqual(res_node, None)
 
+    def test_simple_exp(self):
+        tkns = [Token(TokenType.NUMBER, 9), Token(TokenType.NUMBER, 10), Token(TokenType.ADD)]
+        nd = self.parser_.parse(tkns)
+        self.assertIsInstance(nd, Node)
+        self.assertEqual(nd.type, NodeType.ADD)
+        self.assertEqual(nd.left_child.type, NodeType.NUMBER)
+        self.assertEqual(nd.right_child.type, NodeType.NUMBER)
+        self.assertEqual(nd.right_child.value, 9)
+        self.assertEqual(nd.left_child.value, 10)
+
 
 #         check if there's number in a first place, if so, check if there' any tokens left
 #         if so expression is invalid and return None, if not it is OK
