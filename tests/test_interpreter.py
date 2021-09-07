@@ -38,6 +38,11 @@ class InterpreterTest(unittest.TestCase):
         res = self.interpreter.interpret(ppp)
         self.assertEqual(res, 4)
 
+    def test_exp(self):
+        ppp = self.parser.parse(self.lexer.tokenize(self.rpn.to_rpn("2+3*4+10/5")))
+        res = self.interpreter.interpret(ppp)
+        self.assertEqual(res, 16)
+
 
 if __name__ == '__main__':
     unittest.main()
