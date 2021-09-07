@@ -23,5 +23,10 @@ class InterpreterTest(unittest.TestCase):
         res = self.interpreter.interpret(ppp)
         self.assertEqual(res, 24)
 
+    def test_more_than_one_number(self):
+        ppp = self.parser.parse(self.lexer.tokenize(self.rpn.to_rpn("24 31 54")))
+        res = self.interpreter.interpret(ppp)
+        self.assertEqual(res, "")
+
 if __name__ == '__main__':
     unittest.main()
