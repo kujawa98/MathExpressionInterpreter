@@ -13,6 +13,10 @@ class InterpreterTest(unittest.TestCase):
         self.rpn = RPNConverter()
         self.interpreter = Interpreter()
 
+    def test_empty(self):
+        ppp = self.parser.parse(self.lexer.tokenize(self.rpn.to_rpn("")))
+        res = self.interpreter.interpret(ppp)
+        self.assertEqual(res, "")
 
 if __name__ == '__main__':
     unittest.main()
