@@ -13,8 +13,9 @@ class ParserTest(unittest.TestCase):
 
     def test_one_number(self):
         tk = [Token(TokenType.NUMBER, 9)]
+        val = tk[0].value
         res_node = self.parser_.parse(tk)
-        nd = Node(NodeType.NUMBER, None, None, tk[0].value)
+        nd = Node(NodeType.NUMBER, None, None, val)
         self.assertIsInstance(res_node, Node)
         self.assertEqual(res_node.type, NodeType.NUMBER)
         self.assertEqual(res_node.value, nd.value)
