@@ -7,7 +7,7 @@ class Parser:
         main_node = None
         if tokens:
             main_node = self.create_node(tokens.pop(), tokens)
-        if len(tokens) != 0:
+        if len(tokens) != 0 or not main_node:
             print("Semantic error")
             return
         return main_node
