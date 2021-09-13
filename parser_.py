@@ -1,9 +1,14 @@
 from nodes import *
 from tokens import *
+from lexer import Lexer
 
 
 class Parser:
-    def parse(self, tokens):
+    def __init__(self):
+        self.lexer = Lexer()
+
+    def parse(self, expression):
+        tokens = self.lexer.tokenize(expression)
         main_node = None
         if tokens:
             main_node = self.create_node(tokens.pop(), tokens)

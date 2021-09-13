@@ -1,8 +1,13 @@
 from nodes import NodeType
+from parser_ import Parser
 
 
 class Interpreter:
-    def interpret(self, ast):
+    def __init__(self):
+        self.parser = Parser()
+
+    def execute(self, expression):
+        ast = self.parser.parse(expression)
         if ast:
             if ast.type == NodeType.NUMBER:
                 return ast.value

@@ -1,24 +1,17 @@
 import sys
 from interpreter import Interpreter
-from lexer import Lexer
-from parser_ import Parser
-from rpn_converter import RPNConverter
 
 
 def main():
-    rpn = RPNConverter()
-    lex = Lexer()
-    par = Parser()
     inter = Interpreter()
+    print("Math Expression Interpreter by Qcu")
+    print("Press Q to leave")
     while True:
         exp = input("==> ")
         if exp == 'q':
             sys.exit()
         else:
-            r = rpn.to_rpn(exp)
-            l = lex.tokenize(r)
-            p = par.parse(l)
-            print(inter.interpret(p))
+            print(inter.execute(exp))
 
 
 if __name__ == "__main__":
