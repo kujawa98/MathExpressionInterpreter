@@ -8,10 +8,10 @@ class RPNConverterTest(unittest.TestCase):
         self.rpn_conv = RPNConverter()
 
     def test_empty(self):
-        self.assertEqual(self.rpn_conv.to_rpn(""), "")
+        self.assertEqual(self.rpn_conv.to_rpn(""), [])
 
     def test_whitespaces(self):
-        self.assertEqual(self.rpn_conv.to_rpn("     \n\t\n\n\t\v\v\f\r\f\r\n    "), "")
+        self.assertEqual(self.rpn_conv.to_rpn("     \n\t\n\n\t\v\v\f\r\f\r\n    "), [])
 
     def test_digits_only(self):
         self.assertEqual(self.rpn_conv.to_rpn("12 3 1 43 5"), ['12', '3', '1', '43', '5'])
