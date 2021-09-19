@@ -12,27 +12,22 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(self.parser_.parse([]), None)
 
     def test_one_number(self):
-        tk = [Token(TokenType.NUMBER, 9)]
-        val = tk[0].value
-        res_node = self.parser_.parse(tk)
-        nd = Node(NodeType.NUMBER, None, None, val)
+        res_node = self.parser_.parse("9")
+        nd = Node(NodeType.NUMBER, None, None, 9)
         self.assertIsInstance(res_node, Node)
         self.assertEqual(res_node.type, NodeType.NUMBER)
         self.assertEqual(res_node.value, nd.value)
 
     def test_more_than_one_number(self):
-        tkns = [Token(TokenType.NUMBER, 9), Token(TokenType.NUMBER, 91), Token(TokenType.NUMBER, 4)]
-        res_node = self.parser_.parse(tkns)
+        res_node = self.parser_.parse("9 91 4")
         self.assertEqual(res_node, None)
 
     def test_operators_nodes(self):
-        tkns = [Token(TokenType.ADD), Token(TokenType.MUL), Token(TokenType.DIV), Token(TokenType.SUB)]
-        res_node = self.parser_.parse(tkns)
+        res_node = self.parser_.parse("+*/-")
         self.assertEqual(res_node, None)
 
     def test_simple_exp(self):
-        tkns = [Token(TokenType.NUMBER, 9), Token(TokenType.NUMBER, 10), Token(TokenType.ADD)]
-        nd = self.parser_.parse(tkns)
+        nd = self.parser_.parse("9 + 10")
         self.assertIsInstance(nd, Node)
         self.assertEqual(nd.type, NodeType.ADD)
         self.assertEqual(nd.left_child.type, NodeType.NUMBER)
@@ -41,9 +36,8 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(nd.left_child.value, 10)
 
     def test_exp(self):
-        tkns = [Token(TokenType.NUMBER, 2), Token(TokenType.NUMBER, 3), Token(TokenType.NUMBER, 4),
-                Token(TokenType.MUL), Token(TokenType.NUMBER, 8), Token(TokenType.DIV), Token(TokenType.ADD)]
-        nd = self.parser_.parse(tkns)
+        nd = self.parser_.parse("2+3*4/8")
+        print(nd)
         self.assertEqual(nd.right_child.type, NodeType.NUMBER)
         self.assertEqual(nd.right_child.value, 2)
         self.assertEqual(nd.left_child.type, NodeType.DIV)
