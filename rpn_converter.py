@@ -11,10 +11,22 @@ class RPNConverter:
             exp_iter = iter(expression)
             current_char = self.jmp_next(exp_iter)
             op_stack = []
+            parens = 0
             while current_char:
                 if current_char.isspace():
                     current_char = self.jmp_next(exp_iter)
                     continue
+                elif current_char == "(":
+                    op_stack.append(current_char)
+                    current_char = self.jmp_next(exp_iter)
+                    parens += 1
+                elif current_char == ")":
+                    while op_stack[-1] != "(":
+                        result.append(op_stack.pop())
+                    else:
+                        op_stack.pop()
+                    current_char = self.jmp_next(exp_iter)
+                    parens -= 1
                 elif current_char.isdigit():
                     current_digit = ""
                     while current_char != None and current_char.isdigit():
@@ -37,6 +49,9 @@ class RPNConverter:
                 else:
                     print(f"{current_char} is unknown character", end="")
                     return []
+            if parens != 0:
+                print("Syntax error", end="")
+                return []
             while op_stack:
                 result.append(op_stack.pop())
         return result
