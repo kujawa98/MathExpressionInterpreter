@@ -35,9 +35,8 @@ class RPNConverter:
                                 break
                     current_char = self.jmp_next(exp_iter)
                 else:
-                    print("Invalid character")
-                    return ""
+                    print(f"{current_char} is unknown character", end="")
+                    return []
             while op_stack:
                 result.append(op_stack.pop())
-            return result if result else ""
-        return ""
+        return result
