@@ -12,8 +12,8 @@ class Parser:
         main_node = None
         if tokens:
             main_node = self.create_node(tokens.pop(), tokens)
-        if len(tokens) != 0 or not main_node:
-            print("Semantic error")
+        if main_node == -1 or len(tokens) != 0:
+            print("Syntax error", end="")
             return
         return main_node
 
@@ -38,4 +38,4 @@ class Parser:
             elif current_token.type == TokenType.NUMBER:
                 return Node(NodeType.NUMBER, None, None, current_token.value)
         except IndexError:
-            return
+            return -1
