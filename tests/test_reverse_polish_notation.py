@@ -25,6 +25,18 @@ class RPNConverterTest(unittest.TestCase):
         self.assertEqual(self.rpn_conv.to_rpn("2+3*4/5-6/7+8"),
                          ['2', '3', '4', '*', '5', '/', '+', '6', '7', '/', '-', '8', '+'])
 
+    def test_right_paren(self):
+        self.assertEqual(self.rpn_conv.to_rpn("(2+2))"), [])
+
+    def test_left_paren(self):
+        self.assertEqual(self.rpn_conv.to_rpn("((2+2)"), [])
+
+    def test_parens(self):
+        self.assertEqual(self.rpn_conv.to_rpn("((2+2))"), ['2', '2', '+'])
+        self.assertEqual(self.rpn_conv.to_rpn("(2+2)"), ['2', '2', '+'])
+        self.assertEqual(self.rpn_conv.to_rpn("(2+2)*2"), ['2', '2', '+', '2', '*'])
+
+
 #         n + 1 operators means n operands for + - * /
 #         we want RPN expression to evaluate to single number
 
