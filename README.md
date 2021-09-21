@@ -13,7 +13,7 @@ python math_inter.py
 to run this program
 
 ## What does it do?
-This simple math expression interpreter let you calculate basic arithmetic operations (integers only), these are:
+This simple math expression interpreter let you calculate basic arithmetic operations (positive integers only), these are:
 * addition
 * subtraction
 * multiplication
