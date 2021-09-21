@@ -21,9 +21,9 @@ class RPNConverter:
                     current_char = self.jmp_next(exp_iter)
                     parens += 1
                 elif current_char == ")":
-                    while op_stack[-1] != "(":
+                    while op_stack and op_stack[-1] != "(":
                         result.append(op_stack.pop())
-                    else:
+                    if op_stack:
                         op_stack.pop()
                     current_char = self.jmp_next(exp_iter)
                     parens -= 1
