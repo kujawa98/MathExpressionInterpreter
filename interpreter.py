@@ -11,7 +11,10 @@ class Interpreter:
         if ast:
             if ast.type == NodeType.NUMBER:
                 return ast.value
-            return self.get_value(ast)
+            try:
+                return self.get_value(ast)
+            except AttributeError:
+                print("Syntax error", end="")
         return ""
 
     def get_value(self, node):
